@@ -6,7 +6,7 @@
 
 ## Setting Up
 
-Ensures that `Docker` is installed into your machine as this challenge requires Docker. If you're unsure how to do it, you can refer [here](https://www.kali.org/docs/containers/installing-docker-on-kali/) to install it into your Kali machine.
+Ensures that `Docker` is installed into your machine as this challenge requires Docker. If you're unsure how to do it, you can refer [here](https://www.kali.org/docs/containers/installing-docker-on-kali/) to install it into your Kali machine. Then, install the files `app.py` , `Dockerfile` and `flag-923a4ee403778170c879557425f22848.txt` into the same directory.
 
 ### Commands (Kali)
 [1] `sudo docker build -t sstichall .`
