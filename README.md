@@ -6,7 +6,7 @@ This repository was built primarily to allow users to try some of the CTF challe
 | Category | Challenges |
 |----------|------------|
 | Misc     | [PyJail](https://github.com/emperorpenguincat/Challenges/tree/main/PyJail)|
-| Web      | [SSTI]     |
+| Web      | [SSTI] (https://github.com/emperorpenguincat/Challenges/tree/main/SSTI)    |
 
 </div>
 
