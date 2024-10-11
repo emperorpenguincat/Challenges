@@ -102,7 +102,7 @@ And it works! We can view all the files contain inside the server directory. Let
 ![image](https://github.com/user-attachments/assets/c43644b2-a538-469d-89e3-7b2290c0d623)
 
 Wait but the website still denying us? But why? It seems like the filename `flag-923a4ee403778170c879557425f22848.txt` has a "." in the extension which preventing us from performing the exploit.
-Luckily, we can bypass this by simply encoding the filename into hex like this:
+Luckily, we can bypass this by simply encode the filename into hex like this:
 
 `\x66\x6c\x61\x67\x2d\x39\x32\x33\x61\x34\x65\x65\x34\x30\x33\x37\x37\x38\x31\x37\x30\x63\x38\x37\x39\x35\x35\x37\x34\x32\x35\x66\x32\x32\x38\x34\x38\x2e\x74\x78\x74`
 
