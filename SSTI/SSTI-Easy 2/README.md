@@ -2,7 +2,7 @@
 
 ### Difficulty: Easy
 
-### Objective: Bypass blacklisted ("(" and ")")
+### Objective: Bypass blacklisted ("_")
 
 ## Setting Up
 
