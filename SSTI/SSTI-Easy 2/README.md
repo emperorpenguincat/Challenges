@@ -46,7 +46,7 @@ Let's use a SSTI payload like `{{request.application.__globals__.__builtins__.__
 
 ![image](https://github.com/user-attachments/assets/579ab938-dac5-4d4a-8aed-3edd8ad37819)
 
-The website somehow is blocking our payload.Looks like they blacklisted some characters.
+The website somehow is blocking our payload. Looks like they blacklisted some characters.
 
 ![image](https://github.com/user-attachments/assets/01fb2f5e-312b-48a1-b6b6-ffc1ceec65d7)
 
