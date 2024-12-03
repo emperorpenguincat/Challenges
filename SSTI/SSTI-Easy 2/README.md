@@ -102,6 +102,7 @@ And it works! We successfully view all the files contain inside the server direc
 
 ![image](https://github.com/user-attachments/assets/28949435-0e8d-4d1c-b292-492768262978)
 
+Thus, we have successfully obtained the flag.
 
 ## Flag
 >flag{3a823364c48716d80fb5a766454bacd4} 
