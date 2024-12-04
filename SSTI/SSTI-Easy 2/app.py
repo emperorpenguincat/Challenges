@@ -7,18 +7,21 @@ blacklisted=[r"\_"]
 
 @app.route('/', methods=('GET','POST'))
 def index():
-	if request.method=='POST':
-		note=request.form['note']
-		if sanitize(note):
-			return render_template_string(note)
-		else:
-			return('Please provide valid text')
-	return '''
-		<form method="POST">
-			Note:<input type="text" name="note">
-			<input type="submit" value="Submit">
-		</form>
-	'''
+	try:
+		if request.method=='POST':
+			note=request.form['note']
+			if sanitize(note):
+				return render_template_string(note)
+			else:
+				return('Please provide valid text')
+		return '''
+			<form method="POST">
+				Note:<input type="text" name="note">
+				<input type="submit" value="Submit">
+			</form>
+		'''
+	except:
+		return ('Please provide valid text')
 
 def sanitize(x):
 	for i in blacklisted:
