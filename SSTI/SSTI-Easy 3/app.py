@@ -8,20 +8,23 @@ blacklisted = [r"\(", r"\)"]
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
-    if request.method == 'POST':
-        note = request.form['note']
-        if sanitize(note):
-            normalized_note = normalize_input(note)
-            return render_template_string(normalized_note)
-        else:
-            return 'Please provide valid text'
-    return '''
-        <form method="POST">
-            Note: <input type="text" name="note">
-            <input type="submit" value="Submit">
-        </form>
-    '''
-
+    try:
+        if request.method == 'POST':
+            note = request.form['note']
+            if sanitize(note):
+                normalized_note = normalize_input(note)
+                return render_template_string(normalized_note)
+            else:
+                return 'Please provide valid text'
+        return '''
+            <form method="POST">
+                Note: <input type="text" name="note">
+                <input type="submit" value="Submit">
+            </form>
+        '''
+    except:
+        return 'Please provide valid text'
+        
 def sanitize(input_text):
     for pattern in blacklisted:
         if re.search(pattern, input_text):
